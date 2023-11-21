@@ -13,7 +13,6 @@ let connections = [];
 const handleMessage = (bytes) => {
   const message = JSON.parse(bytes.toString());
   broadcast(message);
-  console.log(`Connections: ${connections.length}`);
 };
 const handleClose = (username, connection) => {
   connections = connections.filter((conn) => conn !== connection);
@@ -30,6 +29,7 @@ wsServer.on("connection", (connection, request) => {
   const { username } = url.parse(request.url, true).query;
   connections.push(connection);
   broadcast({ message: `${username} joined the chat!`, from: "system" });
+  console.log(`Connections: ${connections.length}`);
   connection.on("message", (message) => handleMessage(message));
   connection.on("close", () => handleClose(username, connection));
 });

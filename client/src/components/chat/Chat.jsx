@@ -55,10 +55,10 @@ function Chat({ username }) {
             <p
               className={
                 m.from === username
-                  ? "px-2 py-1 bg-sky-400 rounded-lg text-white text-base break-inside-auto"
+                  ? "self end px-2 py-1 bg-sky-400 rounded-lg text-white text-base max-w-xs break-words"
                   : m.from === "system"
                   ? "self-center text-xs text-gray-500"
-                  : "self-start px-2 py-1 bg-slate-300 rounded-lg text-base break-inside-auto"
+                  : "self-start px-2 py-1 bg-slate-300 rounded-lg text-base max-w-xs break-words"
               }
             >
               {m.message}
@@ -66,7 +66,7 @@ function Chat({ username }) {
           </div>
         ))}
       </div>
-      <div className="mt-4">
+      <div className="my-4">
         <input
           type="text"
           name="message"
@@ -74,6 +74,7 @@ function Chat({ username }) {
           placeholder="Message"
           onChange={(e) => setMessage(e.target.value)}
           value={message}
+          className="rounded-lg mr-2 px-2 py-1"
         />
         <input
           className="bg-sky-500 text-white px-3 py-1 rounded-lg"
